@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const app = express();
+const path = require('path'); // path modülünü ekledik
 const PORT = 4000;
 
 app.listen(PORT, () => {
@@ -8,7 +9,10 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req, res) => {
-  fs.readFile('/apidetails.json', 'utf8', (err, data) => {
+  // Dosya yolu düzenleme
+  const filePath = path.join(__dirname, 'apidetails.json');
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading the file:', err);
       res.status(500).json({ error: 'Error reading the file' });
