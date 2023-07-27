@@ -10,7 +10,7 @@ app.listen(PORT, () => {
 
 app.get('/', (req, res) => {
   // Dosya yolu düzenleme
-  const filePath = path.join(__dirname, 'apidetails.json');
+  const filePath = path.join(__dirname, '/apidetails.json');
 
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
