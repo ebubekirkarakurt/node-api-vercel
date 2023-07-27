@@ -8,7 +8,7 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req, res) => {
-  fs.readFile('/apidetail.txt', 'utf8', (err, data) => {
+  fs.readFile('/apidetails.json', 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading the file:', err);
       res.status(500).json({ error: 'Error reading the file' });
