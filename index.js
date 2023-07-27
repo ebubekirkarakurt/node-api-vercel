@@ -1,40 +1,19 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
 
-let todos = [
-  { "id": 1, "ENG": "Turkey", "TR": "Türkiye", "categoryId": 1 }
-];
+const app = express()
+const PORT = 4000
 
-router.get('/todos', (req, res) => {
-  res.json(todos);
-});
+app.listen(PORT, () => {
+  console.log(`API listening on PORT ${PORT} `)
+})
 
-router.post('/todos', (req, res) => {
-  const newTodo = req.body;
-  todos.push(newTodo);
-  res.json(newTodo);
-});
+app.get('/', (req, res) => {
+  res.send('Hey this is my API running 🥳')
+})
 
-router.put('/todos/:id', (req, res) => {
-  const todoId = req.params.id;
-  const updatedTodo = req.body;
+app.get('/about', (req, res) => {
+  res.send('This is my about route..... ')
+})
 
-  todos = todos.map(todo => {
-    if (todo.id === parseInt(todoId)) {
-      return { ...todo, ...updatedTodo };
-    }
-    return todo;
-  });
-
-  res.json(updatedTodo);
-});
-
-router.delete('/todos/:id', (req, res) => {
-  const todoId = req.params.id;
-
-  todos = todos.filter(todo => todo.id !== parseInt(todoId));
-
-  res.sendStatus(200);
-});
-
-module.exports = router;
+// Export the Express API
+module.exports = app
